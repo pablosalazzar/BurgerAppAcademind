@@ -1,10 +1,11 @@
 import Aux from '../../hoc/Auxx'
+import styles from './Layout.module.css'
 
 const Layout = (props) => {
     return(
         <Aux>
             <div> Toolbar, Sidebar, Backdrop</div>
-            <main>
+            <main className={styles.Content}>
                 {props.children}
             </main>
         </Aux>
