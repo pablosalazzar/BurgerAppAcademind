@@ -23,20 +23,6 @@ class BurguerBuilder extends Component{
     }
 
     addIngredientHandler = (type) => {
-        /* Maximilian way        
-        const oldCount = this.state.ingredients[type];
-        const updatedIngredient = oldCount +1 ;
-        const updatedIngredients = {
-            ...this.state.ingredients
-        }
-        updatedIngredients[type] = updatedIngredient
-
-        //Change total price
-        const oldTotalPrice = this.state.totalPrice;
-        const updatedTotalPrice = oldTotalPrice + INGREDIENT_PRICES[type]
-
-        this.setState({ingredients: updatedIngredients, totalPrice:updatedTotalPrice}) */
-
         this.setState({
             ingredients:{
                 ...this.state.ingredients,
@@ -44,33 +30,39 @@ class BurguerBuilder extends Component{
             },
             totalPrice: this.state.totalPrice + INGREDIENT_PRICES[type]
         })
-        
     }
 
     lessIngresientHandler = (type) => {
 
         const quantity = this.state.ingredients[type];
-        if(quantity !== 0 ){
-            this.setState({
-                ingredients:{
-                    ...this.state.ingredients,
-                    [type]: this.state.ingredients[type] - 1
-                },
-                totalPrice: this.state.totalPrice - INGREDIENT_PRICES[type]
-            })    
-        }else{
-            alert('Ya no hay ingredientes');
-        }        
+        if(quantity <= 0){
+            return;
+        }
+        
+        this.setState({
+            ingredients:{
+                ...this.state.ingredients,
+                [type]: this.state.ingredients[type] - 1
+            },
+            totalPrice: this.state.totalPrice - INGREDIENT_PRICES[type]
+        })    
     }
 
 
     render(){
+        const disableInfo = {...this.state.ingredients}
+        for(let key in disableInfo){
+            disableInfo[key] = disableInfo[key] <= 0;
+        }
+
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
                 <BuildControls
                     ingredientAdded = {this.addIngredientHandler}
                     ingredientRemoved = {this.lessIngresientHandler}
+                    disabled = {disableInfo}
+                    price = {this.state.totalPrice}
                 />
             </Aux>
         );

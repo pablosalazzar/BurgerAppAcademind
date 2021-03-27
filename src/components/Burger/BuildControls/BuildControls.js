@@ -10,10 +10,14 @@ const controls = [
 ];
 
 const BuildControls = (props) => {
-
-    return(
+    return( 
         <div className={styles.BuildControls}>
-            Select your ingredients:
+            <p>
+                Current Price:
+                <strong>
+                    {props.price.toFixed(2)}
+                </strong>
+            </p>
             
             {
                 controls.map( ctrl => 
@@ -22,6 +26,7 @@ const BuildControls = (props) => {
                         label = {ctrl.label}
                         added = { () => props.ingredientAdded(ctrl.type)} 
                         removed = { () => props.ingredientRemoved(ctrl.type)} 
+                        disabled = {props.disabled[ctrl.type]}
                     />
                 )
             }
