@@ -1,23 +1,77 @@
 import React, { Component } from "react";
 import Aux from '../../hoc/Auxx'
 import Burger from '../../components/Burger/Burger'
+import BuildControls from '../../components/Burger/BuildControls/BuildControls'
+
+const INGREDIENT_PRICES = {
+    salad: 0.5,
+    cheese: 0.4,
+    meat:   1.3,
+    bacon: 0.7,
+}
 
 class BurguerBuilder extends Component{
 
     state = {
         ingredients: {
-            salad:1,
-            bacon:1,
-            cheese:2,
-            meat:2,
-        }
+            salad:0,
+            bacon:0,
+            cheese:0,
+            meat:0,
+        },
+        totalPrice: 4
     }
+
+    addIngredientHandler = (type) => {
+        /* Maximilian way        
+        const oldCount = this.state.ingredients[type];
+        const updatedIngredient = oldCount +1 ;
+        const updatedIngredients = {
+            ...this.state.ingredients
+        }
+        updatedIngredients[type] = updatedIngredient
+
+        //Change total price
+        const oldTotalPrice = this.state.totalPrice;
+        const updatedTotalPrice = oldTotalPrice + INGREDIENT_PRICES[type]
+
+        this.setState({ingredients: updatedIngredients, totalPrice:updatedTotalPrice}) */
+
+        this.setState({
+            ingredients:{
+                ...this.state.ingredients,
+                [type]: this.state.ingredients[type] + 1
+            },
+            totalPrice: this.state.totalPrice + INGREDIENT_PRICES[type]
+        })
+        
+    }
+
+    lessIngresientHandler = (type) => {
+
+        const quantity = this.state.ingredients[type];
+        if(quantity !== 0 ){
+            this.setState({
+                ingredients:{
+                    ...this.state.ingredients,
+                    [type]: this.state.ingredients[type] - 1
+                },
+                totalPrice: this.state.totalPrice - INGREDIENT_PRICES[type]
+            })    
+        }else{
+            alert('Ya no hay ingredientes');
+        }        
+    }
+
 
     render(){
         return (
             <Aux>
                 <Burger ingredients={this.state.ingredients}/>
-                <div>Build Controls</div>
+                <BuildControls
+                    ingredientAdded = {this.addIngredientHandler}
+                    ingredientRemoved = {this.lessIngresientHandler}
+                />
             </Aux>
         );
     }
