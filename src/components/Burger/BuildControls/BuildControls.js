@@ -30,7 +30,7 @@ const BuildControls = (props) => {
                     />
                 )
             }
-
+            <button className={styles.OrderButton}>ORDER NOW</button>
         </div>
     )
 }
