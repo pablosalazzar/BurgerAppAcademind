@@ -1,3 +1,7 @@
+# My version of the BurgerApp project by Academind course React - The Complete Guide 
+
+This is for study purposes only 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
