@@ -1,6 +1,6 @@
 import Aux from '../../hoc/Auxx'
 import styles from './Layout.module.css'
-import Toolbar from '../Navegation/Toolbar/Toolbar'
+import Toolbar from '../Navigation/Toolbar/Toolbar'
 
 const Layout = (props) => {
     return(
