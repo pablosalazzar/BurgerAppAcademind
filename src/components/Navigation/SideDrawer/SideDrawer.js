@@ -1,7 +1,7 @@
 import Logo from '../../Logo/Logo'
 import NavigationItems from '../../Navigation/NavigationItems/NavigationItems'
 import styles from './SideDrawer.module.css'
-import Aux from '../../../hoc/Auxx'
+import Aux from '../../../hoc/Auxx/Auxx'
 import Backdrop from '../../UI/Backdrop/Backdrop'
 
 const sideDrawer = (props) =>{

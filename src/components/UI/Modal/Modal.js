@@ -2,7 +2,7 @@ import React from 'react'
 import { checkPropTypes } from "prop-types";
 import styles from './Modal.module.css';
 import Backdrop from '../Backdrop/Backdrop'
-import Aux from '../../../hoc/Auxx'
+import Aux from '../../../hoc/Auxx/Auxx'
 
 class Modal extends React.Component{
 
